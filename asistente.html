@@ -1,0 +1,293 @@
+<html>
+<head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--  <link href="css/bootstrap.min.css" rel="stylesheet">-->
+    <!--<script src="js/jquery.min.js"></script>-->
+</head>
+
+
+
+<body style="background-color:gray">
+<div class="f r ma"><div style="color:white"><label>Idioma/Language:</label><select id="sidioma" onchange="cambiarIdioma(this)"></select></div></div> 
+
+<button onclick="arranqueEjemplo();"/>script visual</button>
+<button onclick="arranqueEjemplo2();"/>script visual</button>
+
+<div id="divConfRadios" style="display:none;width:400px;padding:20px;margin:auto">
+ <label style="margin-left:95%;cursor:pointer;font-size:x-large" onclick="abrirCerrarModal(this,0);" id="lblcr">x</label>
+  <div class="f r encBusq">
+   <label class="a50">Titulo</label><label class="a50">Valor</label>
+  </div>
+  <div class="f r">
+      <div id="lblsRd0" class="f c a50">
+          <input type="txt" id="lblrd0" class="lblrd" ></input>
+      </div>
+      <div id="divsRd0" sclass="f c a50">
+         <input type="txt" id="txtrd0" class="txtrd"></input>
+      </div>
+  </div>
+  <div class="f r">
+    <button onclick="addRdsConf()">Anadir</button>
+    <button onclick="setVlsrds()">Anadir</button>
+  </div>
+</div>
+
+
+<div id="mib">
+<div id="mimodal"></div>
+<div id="divColonias"></div>
+<div class="class="f r a100" "style="align-items:flex-center;justify-content:center">
+  <div><input type="button" value="Guardar" class="btn btn-info btn-lg" style="margin:auto" onclick="guardarTM('colonias\\.')"/>
+
+
+
+</div>
+</div>
+
+
+</div>
+
+<div style="display:none;width:90%;margin:auto;color:white">
+   <label style="margin-left:95%;cursor:pointer;font-size:medium" onclick="abrirCerrarModal(this,0);" id="lblcp">x</label>
+  <div id="divCampoBusqueda" class="f c a100" style="justify-content:space-between;padding:5px">
+   
+
+     <div style="justify-content:space-around" class="encBusq f r a100">
+   	  <div style="width:12%" class="cambid">Tabla</div>     	 
+          <div style="width:12%" class="cambid">Campos</div>
+          <div style="width:12%" class="cambid">Campos busqueda</div>
+          <div style="width:12%">Conf. Hidden</div>
+          <div style="width:52%" class="cambid">Condiciones</div>
+     </div>
+
+ <div style="justify-content:space-around;padding:5px" class="curpo f r a100">
+  
+   <div style="width:12%" id="divTablasBusqueda" class="dtc"></div>   
+   <div style="width:12%" id="divCamposa" class="dtc"></div>   
+   <div style="width:12%" id="divCamposb"></div>   
+   <div id="divhiddconf" class="f r a12">
+      <div id="divhiddid" class="f c"></div><div id="divhidddesc"class="f c"></div>
+   </div>
+   <div id="divListaCondiciones"  class="f r" style="width:52%">
+   <div id="divPurasCondiciones" class="mg-r5p" style="background-color:green;color:white;width:80%"></div>      
+         
+          <div class="f c a20">
+               <div class="mg-r5p"> <select id="selectANDOR"></select></div> 
+               <div class="mg-r5p"><select id="selectLibreForm"></select></div> 
+               <div><button onclick="agregarCondicion();">+</button></div> 
+          </div> 
+  
+  </div>
+
+  </div>
+
+</div>
+
+<div>
+<button onclick="configurarCampoBusqueda()">Aceptar</button>
+</div>
+
+</div>
+
+
+<div class="f r ma" style="background-color:blue;width:90%;">
+     <div id="divHtml" class="f c ma" style="width:10%"><select id="selectHTML"></select></div>
+     <div id="divTablasGuardar" class="f c ma" style="width:2%;margin-right:5px;padding:0"></div>
+     <div id="divTablas" class="f c ma dtc" style="justify-content:space-between;width:10%;margin-left:0;padding-left:0;margin-top:0;margin-bottom:0;margin-right:5px"></div>
+     <div id="divCampos" class="dtc f c ma" style="width:10%"></div>
+     <div class="f c a50" style="margin-right:auto;width:50%">
+        <div style="background-color:green;display:flex;margin-right:auto;" class="dtc f r a100">
+            <div style="width:30%" class="cambid">Etiquetas</div>
+            <div style="width:30%">Participantes</div>
+            <div style="width:20%">Tipo nodo</div>
+            <!--<div style="width:100%">Valores 1 y 2</div>-->
+            <!--<div style="width:100%">Busqueda</div>-->
+            <div style="width:20%">Conf. busqueda</div> 
+         </div>
+         <div id="divFormulario" class="f r a100" style="background-color:gray;margin-right:auto;">
+             <div id="divEtiquetas" class="f c ma a30"></div>
+             <div id="divParticipantes" class="f c ma a30"></div>
+             <div id="divTipoNodo" style="display:flex;flex-direction:column;width:20%;justify-content:space-around"></div>
+           <div id="divBtncb" class="f c ma a20"></div>
+         </div>
+
+
+</div>
+</div>
+
+<input type="button" value="Guardar" onclick="guardarTM('colonias\\.')"/>
+
+<input type="button" onclick="obtenerTipoNodo(document.getElementById('divParticipantes'));" value="tipo nodo"/>
+<input type="button" onclick="crearObjetoPagina()" value="Ver objeto"/>
+
+
+<textarea id="json" name="w3review" rows="20" cols="100" style="display:none">
+
+</textarea>
+
+
+
+<form action="crearPaginax.php" actions="crearPaginax.php" id="frm" method="get">
+
+<input type="text" id="btnj" name="btnj"/>
+
+<input type="text" id="btnj2" name="btnj2"/>
+<input type="text" name="fbobs" id="fbobs"/>
+
+<input type="submit">Enviar</input>
+
+
+<button onclick="guardarTM('colonias\\.')">Guardar</button>
+
+<div style="display:block" id="divMoldeCondiciones">
+<div id="divCondiciones" style="background-color:blue;color:white;" class="n r a100">
+          <div id="divCondTablas0"><select id="selectCondTablas0" onclick="obtenerCamposDeCondiciones(this);actct();" class="scond"></select></div>
+           <div id="divCondCampos0"><select id="selectCondCampos0" class="scond"></select></div>
+           <div id="divCondOperadores0"><select id="selectOperadores0" class="scond"></select></div>
+           <div id="divCondHtmls0"><select id="selectHtmls0" class="scond"></select> </div>
+           <div id="divCondValueText0"><select id="selectValueText0" class="scond"></select></div>
+    </div>    
+</div>
+</form>
+
+</div>
+
+</div>
+<div class="f r">
+ <div><input type="text" id="nt"/><button value="agregar" onclick="crearArchivoServidor();">Agregar</button></div>
+  <div><input type="text"/><button onclick="vprevia('fb');">Vista previa flex box</button></div>
+  <div><input type="text"/><button onclick="vprevia('bs');">Vista previa bootstrap</button></div>
+ 
+
+</div>
+
+
+</body>
+</html>
+
+
+<script src="catfp.js"></script>
+<script src="metadatos.js"></script>
+<script src="sv.js"></script>
+
+
+<script>
+var ara=0;
+
+
+oeid("nt").innerHTML=oeid("nt").nodeName;
+crearDivBusqueda();
+
+
+
+
+
+
+
+
+function crearArchivoServidor(){
+   //console.log(JSON.stringify(arreglo,null,4));
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+           if (this.readyState == 4 && this.status == 200) {  
+          window.open("a.html","_self");  
+         console.log("texto aceptado"+this.responseText); 
+  
+  }
+    };
+    xmlhttp.open("POST","crearArchivo.php", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("val="+oeid("mib").innerHTML+"&ob="+oeid("btnj2").value+"&op="+oeid("btnj").value);
+ 
+}
+
+function  addht(){
+//addmio();
+oeid("mit").value=oeid("mib").innerHTML;
+//oeid("mit").value=oeid("mit").value;
+//alert(oeid("mib").innerHTML);
+crearArchivoServidor("val="+oeid("mit").value+"&ob="+oeid("btnj2").value+"&op="+oeid("btnj").value);/*oeid("mio").value);*/
+
+}
+
+function vprevia(t){
+ var el=oeid("fbobs");
+ if(t=="fb"){el.value="fb"} 
+ else{el.value="bs"}
+ oeid("frm").submit();
+
+ // if(t=="fb")oeid("frm").setAttribute("action","crearPaginafb.html")
+ // else oeid("frm").setAttribute("action","crearPagina.html")
+ // oeid("frm").submit();
+
+}
+
+llenarComboBox(oeid("sidioma"),null,["English","Espanol"]);
+
+
+function cambiarIdioma(o){
+ var aie=["Tabla","Campos","Campos busqueda","Condiciones"];
+ var aii=["Table","Fields","Lookup Fields","Conditions"];
+ var ind=-1;
+ els=document.querySelectorAll(".cambid");
+ var ars=0;
+ var ara=0;
+ if(o.selectedIndex > 0){
+ 	for(var x=0;x<=els.length-1;x++){
+ 		var txt=els[x].childNodes[0].textContent;
+ 		ars=o.selectedIndex==1?aii:aie;
+                ara=o.selectedIndex==1?aie:aii; 
+        	ind=ara.indexOf(txt); 
+        	if(ind >-1){
+             		els[x].childNodes[0].textContent=ars[ind];
+      		}
+	 }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<style>
+  .n{display:none;}
+  .f{display:flex;}
+  .c{flex-direction:column;}
+  .r{flex-direction:row;}
+  .a12{width:12%;}
+  .a15{width:15%;}
+  .a20{width:20%;}
+  .a25{width:25%;}
+  .a30{width:30%;}
+  .a50{width:50%;}  
+  .a100{width:100%;}
+
+  .ma{margin:auto;}
+
+  h1 {color:red;}
+  p {color:blue;}
+  .mg-r5p{margin-right:5px}
+  .encBusq{background-color:black;color:white;font-weight:bold;font-size:small;padding:5px}
+  .dtc{color:white;font-weight:bold;font-size:small;cursor:pointer;}
+   select{margi-top:0;}
+   .curpo{cursor:pointer}
+  input {
+  max-width: 100%;
+}
+</style>

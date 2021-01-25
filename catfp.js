@@ -591,6 +591,7 @@ function crearDivBusqueda(){
  apCh(dc,divFilaBuscar);
  var tr=crearObjetoDOM("div","","Tabla receptora","","margin:auto;margin-top:10px","tablaReceptora");
  apCh(dc,tr);
+if(oeid("mimodal")!=null)
  oeid("mimodal").appendChild(dc);
 
 

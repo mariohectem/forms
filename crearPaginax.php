@@ -57,7 +57,7 @@
 
 <div>
 <input type="text" id="nomarch" placeholder="Nombre del archivo"></input>
-<input type="button" value="Crear archivo" class="btn btn-info btn-lg" style="margin:auto" onclick="crearArchivoServidor()"/>
+<input type="button" value="Crear archivo" class="btn btn-info btn-lg" style="margin:auto" onclick="crearArchivoServidor()" id="btncarch"/>
 </div>
 
 
@@ -66,7 +66,7 @@
 
 
 </body>
-<input type="text" id="miObj">
+<input type="text" id="miObj" style="display:none">
 </html>
 <script src="catfp.js"></script>
 <script>
@@ -106,7 +106,7 @@ function crearArchivoServidor(){
     };
     xmlhttp.open("POST","crearArchivo.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("nomarch="+oeid("nomarch").value+".html&"+"val="+oeid("mib").innerHTML+"&ob="+JSON.stringify(cb)+"&op="+JSON.stringify(op));
+    xmlhttp.send("nomarch="+oeid("nomarch").value+".html&"+"val="+oeid("mib").innerHTML+"&ob="+JSON.stringify(cb)+"&op="+JSON.stringify(op)+"&fbobs=<?php $_GET['fbobs'];?>");
  
 }
 
@@ -122,3 +122,4 @@ function crearArchivoServidor(){
  .form-group{display:flex;flex-direction:row}
 
 </style>
+

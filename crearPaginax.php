@@ -106,7 +106,7 @@ function crearArchivoServidor(){
     };
     xmlhttp.open("POST","crearArchivo.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("nomarch="+oeid("nomarch").value+".html&"+"val="+oeid("mib").innerHTML+"&ob="+JSON.stringify(cb)+"&op="+JSON.stringify(op)+"&fbobs=<?php $_GET['fbobs'];?>");
+    xmlhttp.send("nomarch="+oeid("nomarch").value+".html&"+"val="+oeid("mib").innerHTML+"&ob="+JSON.stringify(cb)+"&op="+JSON.stringify(op)+"&fbobs=<?php echo $_GET['fbobs'];?>");
  
 }
 
